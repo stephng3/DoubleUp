@@ -31,6 +31,18 @@ bound by network bandwidth or filesystem i/o
 - Automatic retries of failed range requests up to a threshold so that a single failed request
 does not kill all the progress made so far
 
+## Binaries and building from source
+
+Pre-built binaries are available [here](https://github.com/stephng3/DoubleUp/releases). 
+
+To build from source, you need the go toolchain. Follow instructions [here](https://golang.org/doc/install) to install those.
+
+The Makefile has configurations that should suit most needs. Run the following:
+```
+$ make deps build
+```
+Your binaries should be in the ./build folder.
+
 ## Why Golang?
 
 Golang's amazing concurrency primitives make it an excellent choice for this application. 
