@@ -1,4 +1,6 @@
 .idea/
-.DS_Store
-
 build/
+.cover/
+
+.DS_Store
+*.tmp
