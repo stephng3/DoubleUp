@@ -1,5 +1,8 @@
 ## 💪 DoubleUp 💪 - A concurrent downloader written in Go
 
+![travis](https://travis-ci.com/stephng3/DoubleUp.svg?branch=master)
+[![Go Report Card](https://goreportcard.com/badge/github.com/stephng3/DoubleUp)](https://goreportcard.com/report/github.com/stephng3/DoubleUp)
+
 ![gif](fun.gif)
 
 (Goroutines should work together and not *sabo* (lit. sabotage) each other)

@@ -40,7 +40,7 @@ func (dst *OffsetWriter) Write(b []byte) (n int, err error) {
 
 // Initialize global client for reuse
 // See https://golang.org/pkg/net/http/#pkg-overview
-var Client = &http.Client{}
+var client = &http.Client{}
 
 // Launch a HEAD request to find out endpoint capabilities
 func getEndpointCapabilities(URL *url.URL) (chunkType string, length int, canRange bool, err error) {
@@ -132,9 +132,9 @@ func downloadParallel(chunkType string, length int, URL *url.URL, w io.WriterAt,
 		// Fan-in
 		select {
 		case err := <-errorsChan:
-			// Error has occured, close task queue and pop off all remaining tasks
+			// Error has occurred, close task queue and pop off all remaining tasks
 			close(chunkChan)
-			for _ = range chunkChan {
+			for range chunkChan {
 			}
 			return err
 		case <-progressChan:
@@ -158,7 +158,7 @@ func downloadChunk(chunk Chunk) error {
 		URL:    chunk.URL,
 		Header: header,
 	}
-	res, err := Client.Do(req)
+	res, err := client.Do(req)
 	if err != nil {
 		return err
 	}
@@ -168,7 +168,7 @@ func downloadChunk(chunk Chunk) error {
 		return err
 	}
 	if written != chunk.end-chunk.start {
-		return errors.New(fmt.Sprintf("wrong number of bytes copied: expected %d, got %d", chunk.end-chunk.start, written))
+		return fmt.Errorf("wrong number of bytes copied: expected %d, got %d", chunk.end-chunk.start, written)
 	}
 	return nil
 }
@@ -188,7 +188,7 @@ func downloadSingleThreaded(URL *url.URL, w io.Writer) error {
 	return nil
 }
 
-// Driver code to handle various edge cases
+// Downloader: Driver code for choosing the right download methods to call
 func Downloader(nThreads int, resource *url.URL, chunkSize int64, maxAttempts int) error {
 	// Downloader saves the result into a file with an escaped name
 	// In the future, we can do a <src> <dst> format

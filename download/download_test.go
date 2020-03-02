@@ -170,13 +170,13 @@ func checkEndpointResults(endpoint *url.URL, expChunkType string, expLength int,
 		return err
 	}
 	if chunkType != expChunkType {
-		return errors.New(fmt.Sprintf("chunkType different for endpoint %v, expected: %s, actual %s", endpoint, expChunkType, chunkType))
+		return fmt.Errorf("chunkType different for endpoint %v, expected: %s, actual %s", endpoint, expChunkType, chunkType)
 	}
 	if length != expLength {
-		return errors.New(fmt.Sprintf("length different for endpoint %v, expected: %d, actual %d", endpoint, expLength, length))
+		return fmt.Errorf("length different for endpoint %v, expected: %d, actual %d", endpoint, expLength, length)
 	}
 	if canRange != expCanRange {
-		return errors.New(fmt.Sprintf("canRange different for endpoint %v, expected: %v, actual %v", endpoint, expCanRange, canRange))
+		return fmt.Errorf("canRange different for endpoint %v, expected: %v, actual %v", endpoint, expCanRange, canRange)
 	}
 	return nil
 }
