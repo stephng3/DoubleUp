@@ -6,7 +6,6 @@ import (
 	"os"
 )
 
-
 func main() {
 	// See ./cmd/root.go
 	err := cmd.Execute()

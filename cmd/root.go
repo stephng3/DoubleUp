@@ -10,15 +10,15 @@ import (
 
 var (
 	// Flags
-	nThreads int
-	chunkSize int64
+	nThreads    int
+	chunkSize   int64
 	maxAttempts int
-	resource *url.URL
+	resource    *url.URL
 
 	rootCmd = &cobra.Command{
-		Use: "downloader <URL>",
-		Example:   "downloader http://www.google.com -c 4",
-		Short: "A concurrent downloader written in Go.",
+		Use:     "downloader <URL>",
+		Example: "downloader http://www.google.com -c 4",
+		Short:   "A concurrent downloader written in Go.",
 		Args: func(cmd *cobra.Command, args []string) error {
 			if len(args) < 1 {
 				return errors.New("URL required")
@@ -59,7 +59,7 @@ func Execute() error {
 }
 
 func init() {
-	rootCmd.Flags().IntVarP(&nThreads, "nThreads", "c",  1, "Number of concurrent goroutines")
-	rootCmd.Flags().Int64VarP(&chunkSize, "chunkSize", "s",  constants.DefaultChunkSize, "Size of each range request")
-	rootCmd.Flags().IntVarP(&maxAttempts, "maxAttempts", "a",  constants.DefaultMaxAttempts, "Max number of retries per chunk")
+	rootCmd.Flags().IntVarP(&nThreads, "nThreads", "c", 1, "Number of concurrent goroutines")
+	rootCmd.Flags().Int64VarP(&chunkSize, "chunkSize", "s", constants.DefaultChunkSize, "Size of each range request")
+	rootCmd.Flags().IntVarP(&maxAttempts, "maxAttempts", "a", constants.DefaultMaxAttempts, "Max number of retries per chunk")
 }

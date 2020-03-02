@@ -15,7 +15,7 @@ build:
 	$(GOBUILD) -o ./build/$(BINARY_NAME)
 
 test:
-	$(GOTEST) -v ./...
+	$(GOTEST) ./...
 
 clean:
 	$(GOCLEAN)

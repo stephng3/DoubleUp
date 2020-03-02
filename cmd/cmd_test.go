@@ -42,10 +42,9 @@ func checkNoErrorsAndOutputs(t *testing.T, output string, err error) {
 	}
 }
 
-
 // Setup and teardown for each test case
 func TestMain(m *testing.M) {
-	rootCmd.RunE = func(_ *cobra.Command, args []string) error {  return nil }
+	rootCmd.RunE = func(_ *cobra.Command, args []string) error { return nil }
 	res := m.Run()
 	nThreads = 1
 	os.Exit(res)
@@ -80,7 +79,6 @@ func TestValidThreadsFlag(t *testing.T) {
 		runAndTestValidFlag(t, c)
 	}
 }
-
 
 func TestValidURL(t *testing.T) {
 	cmdInputs := []string{
@@ -131,10 +129,10 @@ func TestInvalidURL(t *testing.T) {
 }
 
 func TestInvalidFlags(t *testing.T) {
-	cmdInputs := [][]string {
-		{"unknown shorthand flag","http://google.com", "-c", "1", "-d", "2"},
-		{"unknown shorthand flag","http://google.com", "-d", "2"},
-		{"unknown flag","http://google.com", "--cThreads", "2"},
+	cmdInputs := [][]string{
+		{"unknown shorthand flag", "http://google.com", "-c", "1", "-d", "2"},
+		{"unknown shorthand flag", "http://google.com", "-d", "2"},
+		{"unknown flag", "http://google.com", "--cThreads", "2"},
 	}
 
 	for _, input := range cmdInputs {
@@ -145,9 +143,9 @@ func TestInvalidFlags(t *testing.T) {
 	}
 }
 
-func TestInvalidArguments (t *testing.T) {
-	cmdInputs := [][]string {
-		{"too many positional arguments","http://google.com", "http://facebook.com"},
+func TestInvalidArguments(t *testing.T) {
+	cmdInputs := [][]string{
+		{"too many positional arguments", "http://google.com", "http://facebook.com"},
 		{"URL required"},
 	}
 
