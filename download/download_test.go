@@ -1,10 +1,10 @@
 package download
 
 import (
-	"../constants"
 	"bytes"
 	"errors"
 	"fmt"
+	"github.com/stephng3/DoubleUp/constants"
 	"io"
 	"io/ioutil"
 	"log"

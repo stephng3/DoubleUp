@@ -1,10 +1,10 @@
 package cmd
 
 import (
-	"../constants"
-	"../download"
 	"errors"
 	"github.com/spf13/cobra"
+	"github.com/stephng3/DoubleUp/constants"
+	"github.com/stephng3/DoubleUp/download"
 	"net/url"
 )
 

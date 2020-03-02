@@ -6,7 +6,7 @@ GOTEST=$(GOCMD) test
 GOGET=$(GOCMD) get
 BINARY_NAME=downloader
 
-all: test build-all
+all: deps test build-all
 
 build-all: deps build build-linux build-windows
 
